@@ -17,7 +17,15 @@ public class Joueur {
 	}
 	
 	public boolean estVivant() {
-		return true;
+		return vie>0;
+	}
+	
+	public void ajouterVie(int val) {
+		vie += val;
+	}
+
+	public void setPositionPlateau(int newPositionPlateau) {
+		positionPlateau = newPositionPlateau;
 	}
 	
 }

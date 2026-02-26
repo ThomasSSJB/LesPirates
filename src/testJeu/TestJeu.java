@@ -14,5 +14,6 @@ public class TestJeu {
 		Plateau plateau = new Plateau(posCaseRouletteRusse, posCaseVolVie);
 		Jeu jeu = new Jeu(joueur1, joueur2, plateau);
 		
+		jeu.lancerJeu();
 	}
 }
