@@ -13,7 +13,7 @@ public class Joueur {
 	}
 	
 	public void avancer(int nbCases) {
-		
+		positionPlateau -= nbCases;
 	}
 	
 	public boolean estVivant() {
@@ -23,7 +23,11 @@ public class Joueur {
 	public void ajouterVie(int val) {
 		vie += val;
 	}
-
+	
+	public int getPositionPlateau() {
+		return positionPlateau;
+	}
+	
 	public void setPositionPlateau(int newPositionPlateau) {
 		positionPlateau = newPositionPlateau;
 	}

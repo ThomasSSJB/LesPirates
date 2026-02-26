@@ -4,8 +4,8 @@ import jeu.Joueur;
 
 public class CaseNormale extends Case {
 	
-	public CaseNormale() {
-		super();
+	public CaseNormale(int numeroCase) {
+		super(numeroCase);
 	}
 	
 	@Override

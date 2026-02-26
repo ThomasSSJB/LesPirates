@@ -8,13 +8,14 @@ public class CaseRouletteRusse extends Case {
 	
 	private Random random;
 	
-	public CaseRouletteRusse() {
-		super();
+	public CaseRouletteRusse(int numeroCase) {
+		super(numeroCase);
 		
 		try {
 			random = SecureRandom.getInstanceStrong();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
 		
 	}
 	

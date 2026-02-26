@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class De {
 	
-	private int resultatDe;
 	private Random random;
 	
 	public De() {
@@ -16,12 +15,10 @@ public class De {
 		}
 	}
 	
-	public void lancerDe() {
-		resultatDe = random.nextInt(5);
-	}
-	
-	public int getResultatDe() {
-		return resultatDe;
+	public int lancerDes() {
+		int resultatDe1 = random.nextInt(5);
+		int resultatDe2 = random.nextInt(5);		
+		return resultatDe1 + resultatDe2;
 	}
 
 }
