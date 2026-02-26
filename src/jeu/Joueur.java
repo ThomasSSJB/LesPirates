@@ -17,7 +17,7 @@ public class Joueur {
 	}
 	
 	public boolean estVivant() {
-		
+		return true;
 	}
 	
 }
