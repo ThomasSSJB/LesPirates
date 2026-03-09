@@ -9,7 +9,7 @@ public class CaseVolVie extends Case {
 	}
 	
 	@Override
-	protected void declencherAction(Joueur joueurActuel, Joueur joueurAdversaire) {
+	public void declencherAction(Joueur joueurActuel, Joueur joueurAdversaire) {
 		System.out.println("Vous êtes sur une Case VolVie."); // à remplacer avec Affichage
 		joueurActuel.ajouterVie(1);
 		joueurAdversaire.ajouterVie(-1);

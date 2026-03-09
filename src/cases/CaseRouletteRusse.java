@@ -20,7 +20,7 @@ public class CaseRouletteRusse extends Case {
 	}
 	
 	@Override
-	protected void declencherAction(Joueur joueurActuel, Joueur joueurAdversaire) {
+	public void declencherAction(Joueur joueurActuel, Joueur joueurAdversaire) {
 		System.out.println("Vous êtes sur une Case RouletteRusse."); // à remplacer avec Affichage
 		joueurActuel.setPositionPlateau(random.nextInt(30));
 	}
