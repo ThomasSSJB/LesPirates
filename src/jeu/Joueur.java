@@ -4,7 +4,7 @@ public class Joueur {
 	
 	private String nom;
 	private int vie = 5;
-	private int positionPlateau = 0;
+	private int positionPlateau = 1;
 	private Couleur couleurPion;
 	
 	public Joueur(String nom, Couleur couleurPion) {
@@ -13,7 +13,7 @@ public class Joueur {
 	}
 	
 	public void avancer(int nbCases) {
-		positionPlateau -= nbCases;
+		positionPlateau += nbCases;
 	}
 	
 	public boolean estVivant() {
@@ -32,4 +32,7 @@ public class Joueur {
 		positionPlateau = newPositionPlateau;
 	}
 	
+	public int getVie() {
+		return vie;
+	}
 }
