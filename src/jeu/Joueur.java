@@ -24,15 +24,23 @@ public class Joueur {
 		vie += val;
 	}
 	
-	public int getPositionPlateau() {
-		return positionPlateau;
-	}
-	
 	public void setPositionPlateau(int newPositionPlateau) {
 		positionPlateau = newPositionPlateau;
 	}
 	
+	public String getNom() {
+		return nom;
+	}
+	
 	public int getVie() {
 		return vie;
+	}
+	
+	public int getPositionPlateau() {
+		return positionPlateau;
+	}
+	
+	public Couleur getCouleurPion() {
+		return couleurPion;
 	}
 }

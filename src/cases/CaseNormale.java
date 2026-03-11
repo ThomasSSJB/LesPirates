@@ -1,16 +1,17 @@
 package cases;
 
+import affichage.Affichage;
 import jeu.Joueur;
 
 public class CaseNormale extends Case {
 	
-	public CaseNormale(int numeroCase) {
-		super(numeroCase);
+	public CaseNormale(int numeroCase, Affichage affichage) {
+		super(numeroCase, affichage);
 	}
 	
 	@Override
 	public void declencherAction(Joueur joueurActuel, Joueur joueurAdversaire) {
-		System.out.println("Vous êtes sur une Case Normale."); // à remplacer avec Affichage
+		super.affichage.afficherCaseNormale("Le joueur est sur une Case Normale.");
 	}
 
 }

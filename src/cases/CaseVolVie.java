@@ -1,16 +1,17 @@
 package cases;
 
+import affichage.Affichage;
 import jeu.Joueur;
 
 public class CaseVolVie extends Case {
 	
-	public CaseVolVie(int numeroCase) {
-		super(numeroCase);
+	public CaseVolVie(int numeroCase, Affichage affichage) {
+		super(numeroCase, affichage);
 	}
 	
 	@Override
 	public void declencherAction(Joueur joueurActuel, Joueur joueurAdversaire) {
-		System.out.println("Vous êtes sur une Case VolVie."); // à remplacer avec Affichage
+		super.affichage.afficherCaseVolVie("Le joueur est sur une Case VolVie.", joueurActuel.getNom(), joueurAdversaire.getNom());
 		joueurActuel.ajouterVie(1);
 		joueurAdversaire.ajouterVie(-1);
 	}

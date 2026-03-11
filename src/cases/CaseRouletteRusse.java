@@ -2,14 +2,16 @@ package cases;
 
 import java.security.SecureRandom;
 import java.util.Random;
+
+import affichage.Affichage;
 import jeu.Joueur;
 
 public class CaseRouletteRusse extends Case {
 	
 	private Random random;
 	
-	public CaseRouletteRusse(int numeroCase) {
-		super(numeroCase);
+	public CaseRouletteRusse(int numeroCase, Affichage affichage) {
+		super(numeroCase, affichage);
 		
 		try {
 			random = SecureRandom.getInstanceStrong();
@@ -21,8 +23,9 @@ public class CaseRouletteRusse extends Case {
 	
 	@Override
 	public void declencherAction(Joueur joueurActuel, Joueur joueurAdversaire) {
-		System.out.println("Vous êtes sur une Case RouletteRusse."); // à remplacer avec Affichage
-		joueurActuel.setPositionPlateau(random.nextInt(30));
+		int newPosition = random.nextInt(30);
+		super.affichage.afficherCaseRouletteRusse("Le joueur est sur une Case RouletteRusse.", newPosition);
+		joueurActuel.setPositionPlateau(newPosition);
 	}
 
 }

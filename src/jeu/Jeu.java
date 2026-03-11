@@ -8,50 +8,50 @@ import cases.CaseVolVie;
 public class Jeu {
 	
 	private Affichage affichage;
+	private De des = new De();
 	private Joueur joueur1;
 	private Joueur joueur2;
-	private De des;
 	private Plateau plateau;
 	private int nbJoueurs = 2;
 	private int nbDes = 2;
 	
 	
-	public Jeu(Joueur joueur1, Joueur joueur2, Plateau plateau) {	
+	public Jeu(Joueur joueur1, Joueur joueur2, Plateau plateau, Affichage affichage) {	
+		this.affichage = affichage;
 		this.joueur1 = joueur1;
 		this.joueur2 = joueur2;
-		this.plateau = plateau;	
-		des = new De();
+		this.plateau = plateau;
 	}
 
 	public void lancerJeu() {
+		affichage.afficherDebutPartie(joueur1.getNom(), joueur2.getNom());
+		
 		int tour = 0;
 		int resultatDes = 0;
 		Joueur joueurActuel;
 		Joueur joueurAdversaire;
-		CaseRouletteRusse caseRouletteRusse = new CaseRouletteRusse(0); 
-		CaseVolVie caseVolVie = new CaseVolVie(0);
-		CaseNormale caseNormale = new CaseNormale(0);
+		CaseRouletteRusse caseRouletteRusse = new CaseRouletteRusse(0, affichage); 
+		CaseVolVie caseVolVie = new CaseVolVie(0, affichage);
+		CaseNormale caseNormale = new CaseNormale(0, affichage);
 		
-		System.out.println("===== Nouveau Jeu =====");
-		
-		while (!verifierFinPartie(joueur1) && !verifierFinPartie(joueur2)) {			
+		while (!verifierFinPartie()) {			
 			if (tour == 0) {
 				joueurActuel = joueur1;
 				joueurAdversaire = joueur2;
 				tour = 1;
-				System.out.println("\nC'est au joueur 1 de jouer !");
+				affichage.afficherTour(1);
 			} else {
 				joueurActuel = joueur2;
 				joueurAdversaire = joueur1;				
 				tour = 0;
-				System.out.println("\nC'est au joueur 2 de jouer !");
+				affichage.afficherTour(2);
 			}
 
 			resultatDes = des.lancerDes();
-			System.out.println("Résutat des dés : " + resultatDes);  // à remplacer par Affichage
+			affichage.afficherResultatDes(resultatDes);
 			
 			deplacerJoueur(joueurActuel, resultatDes);
-			System.out.println("Position du joueur : " + joueurActuel.getPositionPlateau());
+			affichage.afficherJoueur(joueurActuel.getNom(), joueurActuel.getVie(), joueurActuel.getPositionPlateau(), joueurActuel.getCouleurPion());
 			
 			if (plateau.verifierCaseRouletteRusse(joueurActuel.getPositionPlateau())) {
 				caseRouletteRusse.declencherAction(joueurActuel, joueurAdversaire);
@@ -59,10 +59,7 @@ public class Jeu {
 				caseVolVie.declencherAction(joueurActuel, joueurAdversaire);
 			} else {
 				caseNormale.declencherAction(joueurActuel, joueurAdversaire);
-			}
-			
-			System.out.println("Vie du joueur : " + joueurActuel.getVie());
-			
+			}			
 		}
 	}
 	
@@ -75,8 +72,22 @@ public class Jeu {
 		}
 	}
 	
-	public boolean verifierFinPartie(Joueur joueur) {
-		return (joueur.getPositionPlateau() == plateau.getCaseFin().getNumeroCase()) || (!joueur.estVivant());
+	public boolean verifierFinPartie() {
+		boolean finPartieOK = false;
+		if (!joueur1.estVivant()) {
+			affichage.afficherFinPartie(joueur1.getNom(), joueur2.getNom(), true);
+			finPartieOK = true;
+		} else if (!joueur2.estVivant()) {
+			affichage.afficherFinPartie(joueur2.getNom(), joueur1.getNom(), true);
+			finPartieOK = true;
+		} else if (joueur1.getPositionPlateau() == plateau.getCaseFin().getNumeroCase()) {
+			affichage.afficherFinPartie(joueur1.getNom(), joueur2.getNom(), false);
+			finPartieOK = true;
+		} else if (joueur2.getPositionPlateau() == plateau.getCaseFin().getNumeroCase()) {
+			affichage.afficherFinPartie(joueur2.getNom(), joueur1.getNom(), false);
+			finPartieOK = true;
+		}
+		return finPartieOK;
 	}
 
 }

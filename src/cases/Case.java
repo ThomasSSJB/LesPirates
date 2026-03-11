@@ -1,13 +1,16 @@
 package cases;
 
+import affichage.Affichage;
 import jeu.Joueur;
 
 public abstract class Case {
 	
 	private int numeroCase;
+	protected Affichage affichage;
 	
-	public Case(int numeroCase)	{
+	protected Case(int numeroCase, Affichage affichage)	{
 		this.numeroCase = numeroCase;
+		this.affichage = affichage;
 	}
 	
 	protected abstract void declencherAction(Joueur joueurActuel, Joueur joueurAdversaire);
