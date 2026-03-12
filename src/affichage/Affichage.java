@@ -40,7 +40,7 @@ public class Affichage implements IAffichage {
 
 	@Override
 	public void afficherResultatDes(int resultatDes) {
-		System.out.println("Résultat de dés : " + resultatDes);
+		System.out.println("Résultat des dés : " + resultatDes);
 	}
 
 	@Override

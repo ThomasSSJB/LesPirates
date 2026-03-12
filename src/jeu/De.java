@@ -16,8 +16,8 @@ public class De {
 	}
 	
 	public int lancerDes() {
-		int resultatDe1 = random.nextInt(5);
-		int resultatDe2 = random.nextInt(5);		
+		int resultatDe1 = 1 + random.nextInt(5);
+		int resultatDe2 = 1 + random.nextInt(5);		
 		return resultatDe1 + resultatDe2;
 	}
 
