@@ -11,22 +11,22 @@ public class Jeu {
 	private De des = new De();
 	private Joueur joueur1;
 	private Joueur joueur2;
+	private Joueur[] joueursJeu;
 	private Plateau plateau;
-	private int nbJoueurs = 2;
-	private int nbDes = 2;
+	private boolean tourJoueur1 = true;
 	
 	
 	public Jeu(Joueur joueur1, Joueur joueur2, Plateau plateau, Affichage affichage) {	
 		this.affichage = affichage;
 		this.joueur1 = joueur1;
 		this.joueur2 = joueur2;
+		this.joueursJeu = new Joueur[]{joueur2, joueur1};
 		this.plateau = plateau;
 	}
 
 	public void lancerJeu() {
 		affichage.afficherDebutPartie(joueur1.getNom(), joueur2.getNom());
 		
-		int tour = 0;
 		int resultatDes = 0;
 		Joueur joueurActuel;
 		Joueur joueurAdversaire;
@@ -34,18 +34,11 @@ public class Jeu {
 		CaseVolVie caseVolVie = new CaseVolVie(0, affichage);
 		CaseNormale caseNormale = new CaseNormale(0, affichage);
 		
-		while (!verifierFinPartie()) {			
-			if (tour == 0) {
-				joueurActuel = joueur1;
-				joueurAdversaire = joueur2;
-				tour = 1;
-				affichage.afficherTour(1);
-			} else {
-				joueurActuel = joueur2;
-				joueurAdversaire = joueur1;				
-				tour = 0;
-				affichage.afficherTour(2);
-			}
+		while (!verifierFinPartie()) {
+			changerTour();
+			
+			joueurActuel = joueursJeu[0];
+			joueurAdversaire = joueursJeu[1];
 
 			resultatDes = des.lancerDes();
 			affichage.afficherResultatDes(resultatDes);
@@ -59,7 +52,21 @@ public class Jeu {
 				caseVolVie.declencherAction(joueurActuel, joueurAdversaire);
 			} else {
 				caseNormale.declencherAction(joueurActuel, joueurAdversaire);
-			}			
+			}
+		}
+	}
+	
+	public void changerTour() {
+		if (tourJoueur1) {
+			joueursJeu[0] = joueur1;
+			joueursJeu[1] = joueur2;			
+			tourJoueur1 = false;
+			affichage.afficherTour(1);
+		} else {
+			joueursJeu[0] = joueur2;
+			joueursJeu[1] = joueur1;
+			tourJoueur1 = true;		
+			affichage.afficherTour(2);	
 		}
 	}
 	
@@ -71,14 +78,14 @@ public class Jeu {
 			joueur.avancer(val);
 		}
 	}
-	
+
 	public boolean verifierFinPartie() {
 		boolean finPartieOK = false;
 		if (!joueur1.estVivant()) {
-			affichage.afficherFinPartie(joueur1.getNom(), joueur2.getNom(), true);
+			affichage.afficherFinPartie(joueur2.getNom(), joueur1.getNom(), true);
 			finPartieOK = true;
 		} else if (!joueur2.estVivant()) {
-			affichage.afficherFinPartie(joueur2.getNom(), joueur1.getNom(), true);
+			affichage.afficherFinPartie(joueur1.getNom(), joueur2.getNom(), true);
 			finPartieOK = true;
 		} else if (joueur1.getPositionPlateau() == plateau.getCaseFin().getNumeroCase()) {
 			affichage.afficherFinPartie(joueur1.getNom(), joueur2.getNom(), false);
