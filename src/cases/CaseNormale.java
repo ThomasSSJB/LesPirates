@@ -5,8 +5,8 @@ import jeu.Joueur;
 
 public class CaseNormale extends Case {
 	
-	public CaseNormale(int numeroCase, Affichage affichage) {
-		super(numeroCase, affichage);
+	public CaseNormale(Affichage affichage) {
+		super(affichage);
 	}
 	
 	@Override

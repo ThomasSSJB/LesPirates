@@ -5,8 +5,8 @@ import jeu.Joueur;
 
 public class CaseVolVie extends Case {
 	
-	public CaseVolVie(int numeroCase, Affichage affichage) {
-		super(numeroCase, affichage);
+	public CaseVolVie(Affichage affichage) {
+		super(affichage);
 	}
 	
 	@Override

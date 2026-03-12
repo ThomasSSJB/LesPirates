@@ -1,29 +1,28 @@
 package jeu;
 
 import affichage.Affichage;
-import cases.CaseNormale;
+import cases.*;
 
 public class Plateau {
 	
-	private int nbCases = 30;
-	private CaseNormale caseDebut;
-	private CaseNormale caseFin;
+	private static final int nbCases = 30;
+	private Case[] cases = new Case[nbCases];
 	private Integer[] posCaseRouletteRusse;
 	private Integer[] posCaseVolVie;
 	
 	public Plateau(Integer[] posCaseRouletteRusse, Integer[] posCaseVolVie, Affichage affichage) {
 		this.posCaseRouletteRusse = posCaseRouletteRusse;
 		this.posCaseVolVie = posCaseVolVie;
-		caseDebut = new CaseNormale(1, affichage);
-		caseFin = new CaseNormale(nbCases, affichage);
-	}
-
-	public int getNbCases() {
-		return nbCases;
-	}
-
-	public CaseNormale getCaseFin() {
-		return caseFin;
+		
+		for (int i=0 ; i<nbCases ; i++) {
+			if (verifierCaseRouletteRusse(i+1)) {
+				cases[i] = new CaseRouletteRusse(affichage);
+			} else if (verifierCaseVolVie(i+1)){
+				cases[i] = new CaseVolVie(affichage);
+			} else {
+				cases[i] = new CaseNormale(affichage);
+			}
+		}
 	}
 	
 	public boolean verifierCaseRouletteRusse(int positionCase) {
@@ -44,5 +43,11 @@ public class Plateau {
 		return false;
 	}
 	
+	public int getNbCases() {
+		return nbCases;
+	}
 	
+	public Case getCase(int numeroCase) {
+		return cases[numeroCase];
+	}
 }

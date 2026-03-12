@@ -10,8 +10,8 @@ public class CaseRouletteRusse extends Case {
 	
 	private Random random;
 	
-	public CaseRouletteRusse(int numeroCase, Affichage affichage) {
-		super(numeroCase, affichage);
+	public CaseRouletteRusse(Affichage affichage) {
+		super(affichage);
 		
 		try {
 			random = SecureRandom.getInstanceStrong();

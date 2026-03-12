@@ -1,9 +1,6 @@
 package jeu;
 
 import affichage.Affichage;
-import cases.CaseNormale;
-import cases.CaseRouletteRusse;
-import cases.CaseVolVie;
 
 public class Jeu {
 	
@@ -30,13 +27,9 @@ public class Jeu {
 		int resultatDes = 0;
 		Joueur joueurActuel;
 		Joueur joueurAdversaire;
-		CaseRouletteRusse caseRouletteRusse = new CaseRouletteRusse(0, affichage); 
-		CaseVolVie caseVolVie = new CaseVolVie(0, affichage);
-		CaseNormale caseNormale = new CaseNormale(0, affichage);
 		
 		while (!verifierFinPartie()) {
-			changerTour();
-			
+			changerTour();			
 			joueurActuel = joueursJeu[0];
 			joueurAdversaire = joueursJeu[1];
 
@@ -46,13 +39,7 @@ public class Jeu {
 			deplacerJoueur(joueurActuel, resultatDes);
 			affichage.afficherJoueur(joueurActuel.getNom(), joueurActuel.getVie(), joueurActuel.getPositionPlateau(), joueurActuel.getCouleurPion());
 			
-			if (plateau.verifierCaseRouletteRusse(joueurActuel.getPositionPlateau())) {
-				caseRouletteRusse.declencherAction(joueurActuel, joueurAdversaire);
-			} else if (plateau.verifierCaseVolVie(joueurActuel.getPositionPlateau())) {
-				caseVolVie.declencherAction(joueurActuel, joueurAdversaire);
-			} else {
-				caseNormale.declencherAction(joueurActuel, joueurAdversaire);
-			}
+			plateau.getCase(joueurActuel.getPositionPlateau()-1).declencherAction(joueurActuel, joueurAdversaire);
 		}
 	}
 	
@@ -87,10 +74,10 @@ public class Jeu {
 		} else if (!joueur2.estVivant()) {
 			affichage.afficherFinPartie(joueur1.getNom(), joueur2.getNom(), true);
 			finPartieOK = true;
-		} else if (joueur1.getPositionPlateau() == plateau.getCaseFin().getNumeroCase()) {
+		} else if (joueur1.getPositionPlateau() == plateau.getNbCases()) {
 			affichage.afficherFinPartie(joueur1.getNom(), joueur2.getNom(), false);
 			finPartieOK = true;
-		} else if (joueur2.getPositionPlateau() == plateau.getCaseFin().getNumeroCase()) {
+		} else if (joueur2.getPositionPlateau() == plateau.getNbCases()) {
 			affichage.afficherFinPartie(joueur2.getNom(), joueur1.getNom(), false);
 			finPartieOK = true;
 		}

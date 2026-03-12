@@ -54,7 +54,7 @@ public class Affichage implements IAffichage {
 	@Override
 	public void afficherFinPartie(String nomVainqueur, String nomPerdant, boolean vieNOK) {
 		if (vieNOK) {
-			System.out.println("\nLa vie de " + nomPerdant + " est tombé à 0...");
+			System.out.println("\nLa vie de " + nomPerdant + " est tombée à 0...");
 		} else {
 			System.out.println("\n" + nomVainqueur + " a atteint l'arrivée !");
 		}
