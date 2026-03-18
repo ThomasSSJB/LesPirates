@@ -12,7 +12,6 @@ public class Jeu {
 	private Plateau plateau;
 	private boolean tourJoueur1 = true;
 	
-	
 	public Jeu(Joueur joueur1, Joueur joueur2, Plateau plateau, Affichage affichage) {	
 		this.affichage = affichage;
 		this.joueur1 = joueur1;

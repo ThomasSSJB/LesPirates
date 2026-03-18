@@ -1,7 +1,5 @@
 package affichage;
 
-import jeu.Couleur;
-
 public class Affichage implements IAffichage {
 
 	@Override
@@ -10,7 +8,7 @@ public class Affichage implements IAffichage {
 	}
 
 	@Override
-	public void afficherJoueur(String nomJoueur, int vie, int position, Couleur couleurPion) {
+	public void afficherJoueur(String nomJoueur, int vie, int position, String couleurPion) {
 		String message = nomJoueur + " (pion " + couleurPion + ") est sur la case n°" + position + " et possède " + vie + " point";
 		if (vie > 1) {
 			message += "s";
@@ -41,7 +39,7 @@ public class Affichage implements IAffichage {
 	@Override
 	public void afficherCaseEchange(String message, int resultatRandom) {
 		System.out.println(message);
-		System.out.print("On lance une pièce... Résultat : ");
+		System.out.print("[ACTION] On lance une pièce... Résultat : ");
 		if (resultatRandom == 0) {
 			System.out.println("PILE ! Les positions des deux joueurs sont échangées.");
 		} else {

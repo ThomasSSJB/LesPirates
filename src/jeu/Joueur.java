@@ -44,7 +44,7 @@ public class Joueur {
 		return positionPlateau;
 	}
 	
-	public Couleur getCouleurPion() {
-		return couleurPion;
+	public String getCouleurPion() {
+		return couleurPion.getNomCouleur();
 	}
 }

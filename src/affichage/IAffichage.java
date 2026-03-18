@@ -1,11 +1,9 @@
 package affichage;
 
-import jeu.Couleur;
-
 public interface IAffichage {
 	
 	void afficherTour(int numeroJoueur);
-	void afficherJoueur(String nomJoueur, int vie, int position, Couleur couleurPion);
+	void afficherJoueur(String nomJoueur, int vie, int position, String couleurPion);
 	void afficherCaseNormale(String message);
 	void afficherCaseRouletteRusse(String message, int newPosition);
 	void afficherCaseVolVie(String message, String nomJoueur1, String nomJoueur2);
