@@ -15,10 +15,8 @@ public class De {
 		}
 	}
 	
-	public int lancerDes() {
-		int resultatDe1 = 1 + random.nextInt(5);
-		int resultatDe2 = 1 + random.nextInt(5);		
-		return resultatDe1 + resultatDe2;
+	public int lancerDes() {	
+		return 2 + random.nextInt(5) + random.nextInt(5);
 	}
 
 }
