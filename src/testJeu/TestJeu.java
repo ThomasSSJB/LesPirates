@@ -11,10 +11,11 @@ public class TestJeu {
 		
 		Integer[] posCaseRouletteRusse = {3, 10, 15, 18, 24};
 		Integer[] posCaseVolVie = {7, 12, 16, 20, 26};
+		Integer[] posCaseEchange = {9, 14, 17, 22, 28};
 		
 		Affichage affichage = new Affichage();
 		
-		Plateau plateau = new Plateau(posCaseRouletteRusse, posCaseVolVie, affichage);
+		Plateau plateau = new Plateau(posCaseRouletteRusse, posCaseVolVie, posCaseEchange, affichage);
 		Jeu jeu = new Jeu(joueur1, joueur2, plateau, affichage);
 		
 		jeu.lancerJeu();

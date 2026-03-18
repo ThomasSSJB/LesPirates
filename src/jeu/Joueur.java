@@ -24,6 +24,10 @@ public class Joueur {
 		vie += val;
 	}
 	
+	public void setVie(int nouvelleVie) {
+		vie = nouvelleVie;
+	}
+	
 	public void setPositionPlateau(int newPositionPlateau) {
 		positionPlateau = newPositionPlateau;
 	}

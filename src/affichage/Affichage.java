@@ -37,6 +37,18 @@ public class Affichage implements IAffichage {
 		System.out.println("[ACTION] " + nomJoueur1 + " a volé un point de vie à " + nomJoueur2 + " !");
 		
 	}
+	
+	@Override
+	public void afficherCaseEchange(String message, int resultatRandom) {
+		System.out.println(message);
+		System.out.print("On lance une pièce... Résultat : ");
+		if (resultatRandom == 0) {
+			System.out.println("PILE ! Les positions des deux joueurs sont échangées.");
+		} else {
+			System.out.println("FACE ! Les vies des deux joueurs sont échangées.");			
+		}
+		System.out.println("~~ Voici les nouvelles données des joueurs :");
+	}
 
 	@Override
 	public void afficherResultatDes(int resultatDes) {
@@ -53,12 +65,12 @@ public class Affichage implements IAffichage {
 
 	@Override
 	public void afficherFinPartie(String nomVainqueur, String nomPerdant, boolean vieNOK) {
+		System.out.println("\n----- Fin de la partie -----");
 		if (vieNOK) {
-			System.out.println("\nLa vie de " + nomPerdant + " est tombée à 0...");
+			System.out.println("La vie de " + nomPerdant + " est tombée à 0...");
 		} else {
-			System.out.println("\n" + nomVainqueur + " a atteint l'arrivée !");
+			System.out.println(nomVainqueur + " a atteint l'arrivée !");
 		}
 		System.out.println("--> " + nomVainqueur + " a gagné la partie !");
 	}
-
 }
