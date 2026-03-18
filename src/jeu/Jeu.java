@@ -12,25 +12,40 @@ public class Jeu {
 	private Plateau plateau;
 	private boolean tourJoueur1 = true;
 	
-	public Jeu(Joueur joueur1, Joueur joueur2, Plateau plateau, Affichage affichage) {	
+	public Jeu(Affichage affichage) {	
 		this.affichage = affichage;
-		this.joueur1 = joueur1;
-		this.joueur2 = joueur2;
-		this.joueursJeu = new Joueur[]{joueur2, joueur1};
-		this.plateau = plateau;
+	}
+	
+	public void lancerJeu() {
+		initialiserJeu();
+		deroulerJeu();
+	}
+	
+	private void initialiserJeu() {
+		joueur1 = new Joueur("Jack Le Borgne", Couleur.ROUGE);
+		joueur2 = new Joueur("Bill Jambe de Bois", Couleur.BLEU);
+		joueursJeu = new Joueur[]{joueur2, joueur1};
+		
+		Integer[] posCaseRouletteRusse = {3, 10, 15, 18, 24};
+		Integer[] posCaseVolVie = {7, 12, 16, 20, 26};
+		Integer[] posCaseEchange = {9, 14, 17, 22, 28};
+
+		plateau = new Plateau(posCaseRouletteRusse, posCaseVolVie, posCaseEchange, affichage);
 	}
 
-	public void lancerJeu() {
+	private void deroulerJeu() {
 		affichage.afficherDebutPartie(joueur1.getNom(), joueur2.getNom());
 		
 		int resultatDes = 0;
+		int nbTour = 1;
 		Joueur joueurActuel;
 		Joueur joueurAdversaire;
 		
-		while (!verifierFinPartie()) {
-			changerTour();			
+		do {
+			changerTour();
 			joueurActuel = joueursJeu[0];
 			joueurAdversaire = joueursJeu[1];
+			affichage.afficherDebutTour(joueurActuel.getNom(), nbTour);
 
 			resultatDes = des.lancerDes();
 			affichage.afficherResultatDes(resultatDes);
@@ -39,24 +54,24 @@ public class Jeu {
 			affichage.afficherJoueur(joueurActuel.getNom(), joueurActuel.getVie(), joueurActuel.getPositionPlateau(), joueurActuel.getCouleurPion());
 			
 			plateau.getCase(joueurActuel.getPositionPlateau()-1).declencherAction(joueurActuel, joueurAdversaire);
-		}
+			
+			nbTour++;
+		} while (!verifierFinPartie());
 	}
 	
-	public void changerTour() {
+	private void changerTour() {
 		if (tourJoueur1) {
 			joueursJeu[0] = joueur1;
 			joueursJeu[1] = joueur2;			
 			tourJoueur1 = false;
-			affichage.afficherTour(1);
 		} else {
 			joueursJeu[0] = joueur2;
 			joueursJeu[1] = joueur1;
-			tourJoueur1 = true;		
-			affichage.afficherTour(2);	
+			tourJoueur1 = true;
 		}
 	}
 	
-	public void deplacerJoueur(Joueur joueur, int val) {
+	private void deplacerJoueur(Joueur joueur, int val) {
 		if (joueur.getPositionPlateau()+val > plateau.getNbCases()) {
 			val = joueur.getPositionPlateau()+val - plateau.getNbCases();
 			joueur.setPositionPlateau(plateau.getNbCases() - val);
@@ -65,7 +80,7 @@ public class Jeu {
 		}
 	}
 
-	public boolean verifierFinPartie() {
+	private boolean verifierFinPartie() {
 		boolean finPartieOK = false;
 		if (!joueur1.estVivant()) {
 			affichage.afficherFinPartie(joueur2.getNom(), joueur1.getNom(), true);
