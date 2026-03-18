@@ -2,7 +2,7 @@ package affichage;
 
 public interface IAffichage {
 	
-	void afficherTour(int numeroJoueur);
+	void afficherDebutTour(String nomJoueur, int numeroTour);
 	void afficherJoueur(String nomJoueur, int vie, int position, String couleurPion);
 	void afficherCaseNormale(String message);
 	void afficherCaseRouletteRusse(String message, int newPosition);

@@ -1,12 +1,18 @@
 package affichage;
 
+import java.util.Scanner;
+
 public class Affichage implements IAffichage {
-
+	
+	private Scanner clavier = new Scanner(System.in);
+	
 	@Override
-	public void afficherTour(int numeroJoueur) {
-		System.out.println("\n----- C'est au joueur " + numeroJoueur + " de jouer -----");
+	public void afficherDebutTour(String nomJoueur, int numeroTour) {
+		System.out.println("\nAppuyez sur Entrée pour lancer le tour " + numeroTour + " ...");
+		clavier.nextLine();
+		System.out.println("----- C'est au joueur " + nomJoueur + " de jouer -----");
 	}
-
+	
 	@Override
 	public void afficherJoueur(String nomJoueur, int vie, int position, String couleurPion) {
 		String message = nomJoueur + " (pion " + couleurPion + ") est sur la case n°" + position + " et possède " + vie + " point";
