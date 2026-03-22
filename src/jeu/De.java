@@ -15,7 +15,7 @@ public class De {
 		}
 	}
 	
-	public int lancerDes() {	
+	public int lancerDeuxDes() {	
 		return 2 + random.nextInt(5) + random.nextInt(5);
 	}
 

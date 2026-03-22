@@ -47,7 +47,7 @@ public class Jeu {
 			joueurAdversaire = joueursJeu[1];
 			affichage.afficherDebutTour(joueurActuel.getNom(), nbTour);
 
-			resultatDes = des.lancerDes();
+			resultatDes = des.lancerDeuxDes();
 			affichage.afficherResultatDes(resultatDes);
 			
 			deplacerJoueur(joueurActuel, resultatDes);

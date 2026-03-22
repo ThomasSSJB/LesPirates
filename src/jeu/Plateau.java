@@ -29,7 +29,7 @@ public class Plateau {
 		}
 	}
 
-	public boolean verifierCaseRouletteRusse(int positionCase) {
+	private boolean verifierCaseRouletteRusse(int positionCase) {
 		for (int i=0 ; i<posCaseRouletteRusse.length ; i++) {
 			if (posCaseRouletteRusse[i] == positionCase) {
 				return true;
@@ -38,7 +38,7 @@ public class Plateau {
 		return false;
 	}
 	
-	public boolean verifierCaseVolVie(int positionCase) {
+	private boolean verifierCaseVolVie(int positionCase) {
 		for (int i=0 ; i<posCaseVolVie.length ; i++) {
 			if (posCaseVolVie[i] == positionCase) {
 				return true;
